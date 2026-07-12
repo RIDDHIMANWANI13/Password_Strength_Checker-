@@ -46,21 +46,21 @@ number_result = check_number(password)
 print("\n----- PASSWORD REPORT -----")
 
 if length_result:
-    print("✅ Password length is valid.")
+    print("Password length is valid.")
 else:
-    print("❌ Password must be at least 8 characters long.")
+    print("Password must be at least 8 characters long.")
 
 if uppercase_result:
-    print("✅ Contains uppercase letter.")
+    print("Contains uppercase letter.")
 else:
-    print("❌ No uppercase letter found.")
+    print("No uppercase letter found.")
 
 if lowercase_result:
-    print("✅ Contains lowercase letter.")
+    print("Contains lowercase letter.")
 else:
-    print("❌ No lowercase letter found.")
+    print("No lowercase letter found.")
 
 if number_result:
-    print("✅ Contains a number.")
+    print("Contains a number.")
 else:
-    print("❌ No number found.")
+    print("No number found.")
