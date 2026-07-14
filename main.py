@@ -1,47 +1,35 @@
-# input password from user 
-password = input("ENTER YOUR PASSWORD HERE :")
+from checker.rules import (
+    check_length,
+    check_uppercase,
+    check_lowercase,
+    check_number,          
+    check_special_characters,
+    calculate_score,
+    password_strength,
+    get_suggestions
+)
 
-# to check the length of the password 
-def check_length(password):
-    if len(password)>=8:
-        return True
-    
-    return False
+# Input password from user
+password = input("ENTER YOUR PASSWORD HERE: ")
 
-
-# to check the password has uppercase character 
-def check_uppercase(password):
-    for char in password:
-        if char.isupper():
-            return True 
-        
-    return False 
-
-
-# to check the password has lowercse character 
-def check_lowercase(password):
-    for char in password:
-        if char.islower():
-            return True
-        
-    return False 
-
-
-# check numbers 
-def check_number(password):
-    for char in password:
-        if char.isdigit():
-            return True 
-    return False
-
-
-# main program 
+# Check password rules
 length_result = check_length(password)
 uppercase_result = check_uppercase(password)
 lowercase_result = check_lowercase(password)
-number_result = check_number(password)
+number_result = check_number(password)   # Ya check_numbers(password)
+special_result = check_special_characters(password)
 
+# Calculate score
+score = calculate_score(
+    length_result,
+    uppercase_result,
+    lowercase_result,
+    number_result,
+    special_result
+)
 
+# Check strength
+strength = password_strength(score)
 
 print("\n----- PASSWORD REPORT -----")
 
@@ -64,3 +52,36 @@ if number_result:
     print("Contains a number.")
 else:
     print("No number found.")
+
+if special_result:
+    print("Contains a special character.")
+else:
+    print("No special character found.")
+
+print("\nPassword Analysis")
+
+print(f"Length (8+): {length_result}")
+print(f"Uppercase: {uppercase_result}")
+print(f"Lowercase: {lowercase_result}")
+print(f"Numbers: {number_result}")
+print(f"Special Characters: {special_result}")
+
+print(f"\nPassword Score: {score}/5")
+print(f"Password Strength: {strength}")
+
+# Suggestions
+suggestions = get_suggestions(
+    length_result,
+    uppercase_result,
+    lowercase_result,
+    number_result,
+    special_result
+)
+
+print("\nSuggestions:")
+
+if not suggestions:
+    print("Excellent password! No suggestions needed.")
+else:
+    for suggestion in suggestions:
+        print(f"- {suggestion}")
