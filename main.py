@@ -2,11 +2,12 @@ from checker.rules import (
     check_length,
     check_uppercase,
     check_lowercase,
-    check_number,          
+    check_numbers,          
     check_special_characters,
     calculate_score,
     password_strength,
-    get_suggestions
+    get_suggestions,
+    generate_password
 )
 
 # Input password from user
@@ -16,7 +17,7 @@ password = input("ENTER YOUR PASSWORD HERE: ")
 length_result = check_length(password)
 uppercase_result = check_uppercase(password)
 lowercase_result = check_lowercase(password)
-number_result = check_number(password)   # Ya check_numbers(password)
+number_result = check_numbers(password)   
 special_result = check_special_characters(password)
 
 # Calculate score
@@ -85,3 +86,9 @@ if not suggestions:
 else:
     for suggestion in suggestions:
         print(f"- {suggestion}")
+
+help=input("Do you want to generate a password (Y/N)")
+if help=='Y':
+    generated_password = generate_password()
+    print(f"\nGenerated Password: {generated_password}")
+ 

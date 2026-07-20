@@ -1,3 +1,5 @@
+import random
+import string
 
 # to check the length of the password 
 def check_length(password):
@@ -85,3 +87,22 @@ def get_suggestions(length, uppercase, lowercase , numbers , special):
     if not special:
         suggestions.append("Password do not have any special character")
     return suggestions 
+
+def generate_password():
+    # All possible characters
+    characters = (
+        string.ascii_uppercase +
+        string.ascii_lowercase +
+        string.digits +
+        string.punctuation
+    )
+
+    # Empty password
+    password = ""
+
+    # Generate a 8-character password
+    for i in range(8):
+        random_character = random.choice(characters)
+        password = password + random_character
+
+    return password  
